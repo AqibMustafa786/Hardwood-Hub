@@ -5,9 +5,23 @@ import { initializeApp, cert, getApps } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 import { getAuth } from 'firebase-admin/auth';
 
-const serviceAccount = require('../../../service-account.json');
+let serviceAccount = null;
+if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+    try {
+        serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+    } catch (e) {
+        console.error("Failed to parse FIREBASE_SERVICE_ACCOUNT env var", e);
+    }
+} else {
+    try {
+        const saPath = path.join(process.cwd(), 'service-account.json');
+        if (fs.existsSync(saPath)) {
+            serviceAccount = JSON.parse(fs.readFileSync(saPath, 'utf8'));
+        }
+    } catch (e) { }
+}
 
-if (!getApps().length) {
+if (!getApps().length && serviceAccount) {
     initializeApp({
         credential: cert(serviceAccount)
     });
