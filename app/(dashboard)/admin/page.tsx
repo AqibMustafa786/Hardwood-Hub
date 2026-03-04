@@ -193,7 +193,7 @@ export default function AdminDashboardPage() {
                                                         </tr>
                                                     </thead>
                                                     <tbody className="divide-y divide-white/5">
-                                                        {items.map((log) => (
+                                                        {items.map((log: any) => (
                                                             <tr key={log.id} className="hover:bg-white/[0.02] transition-colors group">
                                                                 <td className="p-3 pl-5">
                                                                     <span className="text-xs font-bold text-white tracking-tight">{log.employeeName}</span>
