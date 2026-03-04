@@ -1,0 +1,197 @@
+﻿--- Script Started ---
+--- Firebase Initialized ---
+≡ƒÜÇ Starting Data Migration from CSV...
+≡ƒôä Reading CSV files...
+Parsed: 8 Categories, 92 SubCategories, 448 Skills, 12 Employees, 90 Identifications
+≡ƒº╣ Cleaning existing categories, subCategories, skills...
+node : (node:10268) 
+[DEP0040] 
+DeprecationWarning: 
+The `punycode` module 
+is deprecated. Please 
+use a userland 
+alternative instead.
+At line:1 char:1
++ node 
+scripts/importCSV.js 
+*> script_out.txt
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: ((node:1026   
+ 8) [D...native in    
+stead.:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+(Use `node 
+--trace-deprecation 
+...` to show where 
+the warning was 
+created)
+Γ¥î Migration failed: 
+Error: 8 
+RESOURCE_EXHAUSTED: 
+Quota exceeded.
+    at 
+callErrorFromStatus 
+(D:\Hardwood Hub\node_
+modules\google-gax\nod
+e_modules\@grpc\grpc-j
+s\build\src\call.js:32
+:19)
+    at Object.onReceiv
+eStatus (D:\Hardwood H
+ub\node_modules\google
+-gax\node_modules\@grp
+c\grpc-js\build\src\cl
+ient.js:359:73)
+    at Object.onReceiv
+eStatus (D:\Hardwood H
+ub\node_modules\google
+-gax\node_modules\@grp
+c\grpc-js\build\src\cl
+ient-interceptors.js:3
+27:181)
+    at D:\Hardwood Hub
+\node_modules\google-g
+ax\node_modules\@grpc\
+grpc-js\build\src\reso
+lving-call.js:135:78
+    at process.process
+TicksAndRejections (no
+de:internal/process/ta
+sk_queues:85:11)
+for call at
+    at ServiceClientIm
+pl.makeServerStreamReq
+uest (D:\Hardwood Hub\
+node_modules\google-ga
+x\node_modules\@grpc\g
+rpc-js\build\src\clien
+t.js:342:32)
+    at ServiceClientIm
+pl.<anonymous> 
+(D:\Hardwood Hub\node_
+modules\google-gax\nod
+e_modules\@grpc\grpc-j
+s\build\src\make-clien
+t.js:105:19)
+    at D:\Hardwood Hub
+\node_modules\@google-
+cloud\firestore\build\
+src\v1\firestore_clien
+t.js:242:33
+    at D:\Hardwood Hub
+\node_modules\google-g
+ax\build\src\streaming
+Calls\streamingApiCall
+er.js:38:28
+    at D:\Hardwood Hub
+\node_modules\google-g
+ax\build\src\normalCal
+ls\timeout.js:44:16
+    at Object.request 
+(D:\Hardwood Hub\node_
+modules\google-gax\bui
+ld\src\streamingCalls\
+streaming.js:234:40)
+    at makeRequest 
+(D:\Hardwood Hub\node_
+modules\retry-request\
+index.js:159:28)
+    at retryRequest 
+(D:\Hardwood Hub\node_
+modules\retry-request\
+index.js:119:5)
+    at 
+StreamProxy.setStream 
+(D:\Hardwood Hub\node_
+modules\google-gax\bui
+ld\src\streamingCalls\
+streaming.js:225:37)
+    at StreamingApiCal
+ler.call (D:\Hardwood 
+Hub\node_modules\googl
+e-gax\build\src\stream
+ingCalls\streamingApiC
+aller.js:54:16)
+Caused by: Error
+    at QueryUtil._getR
+esponse (D:\Hardwood H
+ub\node_modules\@googl
+e-cloud\firestore\buil
+d\src\reference\query-
+util.js:44:23)
+    at CollectionRefer
+ence._getResponse 
+(D:\Hardwood Hub\node_
+modules\@google-cloud\
+firestore\build\src\re
+ference\query.js:784:3
+2)
+    at CollectionRefer
+ence._get 
+(D:\Hardwood Hub\node_
+modules\@google-cloud\
+firestore\build\src\re
+ference\query.js:777:3
+5)
+    at D:\Hardwood Hub
+\node_modules\@google-
+cloud\firestore\build\
+src\reference\query.js
+:745:43
+    at D:\Hardwood Hub
+\node_modules\@google-
+cloud\firestore\build\
+src\telemetry\enabled-
+trace-util.js:110:30
+    at NoopContextMana
+ger.with (D:\Hardwood 
+Hub\node_modules\@open
+telemetry\api\build\sr
+c\context\NoopContextM
+anager.js:25:19)
+    at 
+ContextAPI.with 
+(D:\Hardwood Hub\node_
+modules\@opentelemetry
+\api\build\src\api\con
+text.js:60:46)
+    at NoopTracer.star
+tActiveSpan 
+(D:\Hardwood Hub\node_
+modules\@opentelemetry
+\api\build\src\trace\N
+oopTracer.js:65:31)
+    at ProxyTracer.sta
+rtActiveSpan 
+(D:\Hardwood Hub\node_
+modules\@opentelemetry
+\api\build\src\trace\P
+roxyTracer.js:36:24)
+    at EnabledTraceUti
+l.startActiveSpan 
+(D:\Hardwood Hub\node_
+modules\@google-cloud\
+firestore\build\src\te
+lemetry\enabled-trace-
+util.js:102:28) {
+  code: 8,
+  details: 'Quota 
+exceeded.',
+  metadata: Metadata {
+    internalRepr: 
+Map(1) { 
+'x-debug-tracking-id' 
+=> [Array] },
+    opaqueData: 
+Map(0) {},
+    options: {}
+  }
+}

@@ -1,0 +1,9 @@
+--- Script Started ---
+--- Firebase Initialized ---
+🚀 Starting Data Migration from CSV...
+📄 Reading CSV files...
+Parsed: 8 Categories, 92 SubCategories, 448 Skills, 12 Employees
+🧹 Cleaning existing categories, subCategories, skills...
+(node:15856) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+^C

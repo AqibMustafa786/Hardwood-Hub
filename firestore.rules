@@ -1,0 +1,85 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Helper to get user data from Firestore
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    // Helper to check for specific permissions (Modernized for RBAC)
+    function hasPermission(permission) {
+      let data = getUserData();
+      return data.role == 'superAdmin' || (data.permissions != null && data.permissions[permission] == true);
+    }
+
+    // 1. Users collection
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || hasPermission('employees'));
+      allow write: if isAuthenticated() && (data.role == 'superAdmin' || hasPermission('settings'));
+    }
+
+    // New: Roles collection
+    match /roles/{roleId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && getUserData().role == 'superAdmin';
+    }
+
+    // New: Tasks collection
+    match /tasks/{taskId} {
+      allow read, write: if isAuthenticated(); 
+      match /comments/{commentId} {
+        allow read, write: if isAuthenticated();
+      }
+    }
+
+    // 2. Categories & Subcategories
+    match /categories/{catId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (getUserData().role == 'superAdmin' || hasPermission('categories'));
+    }
+    match /subCategories/{subId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (getUserData().role == 'superAdmin' || hasPermission('categories'));
+    }
+    match /identifications/{id} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (getUserData().role == 'superAdmin' || hasPermission('identifications'));
+    }
+
+    // 3. Skills
+    match /skills/{skillId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (getUserData().role == 'superAdmin' || hasPermission('skills'));
+    }
+
+    // 4. Performance Reviews
+    match /performances/{reviewId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (getUserData().role == 'superAdmin' || hasPermission('performance'));
+    }
+
+    // 5. Knowledgebase
+    match /knowledgebase/{kbId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (getUserData().role == 'superAdmin' || hasPermission('isAdmin'));
+    }
+
+    // 6. Dropdowns & Settings
+    match /dropdowns/{id} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (getUserData().role == 'superAdmin' || hasPermission('settings'));
+    }
+    
+    match /settings/{id} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (getUserData().role == 'superAdmin' || hasPermission('settings'));
+    }
+  }
+}
