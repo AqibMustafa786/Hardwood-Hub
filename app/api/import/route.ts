@@ -27,8 +27,6 @@ if (!getApps().length && serviceAccount) {
     });
 }
 
-const db = getFirestore();
-const auth = getAuth();
 
 const parseCSV = (filePath: string): any[] => {
     const fileContent = fs.readFileSync(filePath, 'utf8');
@@ -79,6 +77,9 @@ const mapRole = (position: string) => {
 export async function GET() {
     try {
         console.log('🚀 Starting Data Migration via API Route...');
+
+        const db = getFirestore();
+        const auth = getAuth();
 
         const dataPath = path.join(process.cwd(), 'data');
         const categoriesData = parseCSV(path.join(dataPath, 'Employees - Categories.csv'));
